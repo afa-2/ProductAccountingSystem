@@ -1,4 +1,5 @@
 asgiref
 backports.zoneinfo
 Django
+Pillow
 sqlparse
