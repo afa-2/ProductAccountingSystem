@@ -1,0 +1,23 @@
+{% load static %}
+<head>
+    <script type="text/javascript" src="{% static 'products/js/jquery_min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'products/css/all_products.css' %}">
+</head>
+
+<body>
+    <div class="test">
+        <a href="/admin">Хочу в админ панель</a>
+    </div>
+
+    <script src="https://daruse.ru/assets/js/snowfall.js"></script>
+    <script type="text/javascript">
+        $(document).snowfall({
+            image :"http://qrcoder.ru/code/?%C3%EB%E0%E2%ED%EE%E5+%E4%EE%F1%F2%E8%E6%E5%ED%E8%E5+%F2%E5%F5%ED%E8%F7%E5%F1%EA%EE%E3%EE+%EF%F0%EE%E3%F0%E5%F1%F1%E0+-+%FD%F2%EE+%E2%EE%E7%EC%EE%E6%ED%EE%F1%F2%FC+%E3%E5%ED%E5%F0%E8%F0%EE%E2%E0%F2%FC+QR+%EA%EE%E4%FB&10&0", 
+            flakeCount: 30,
+            minSize: 5, 
+            maxSize: 100,
+            maxSpeed: 1
+        });
+    </script>
+
+</body>

@@ -31,7 +31,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('get_photo', 'title', 'category', 'quantity', 'location', 'status')
     list_display_links = ('title',)
     search_fields = ('title', )
-    list_filter = ('category', 'location', 'place_of_application', 'responsible')
+    list_filter = ('category', 'location', 'place_of_application', 'responsible',)
     list_editable = ('status', )
     fields = ('get_photo', 'main_image', 'title', 'category', 'description', 'quantity',
               'price', 'serial_number', 'location', 'place_of_application',
