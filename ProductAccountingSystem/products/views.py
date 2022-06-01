@@ -86,7 +86,7 @@ def product_card(request, id):
     product = Product.objects.get(id=id)
     qr_code = qrcode.make(request.build_absolute_uri(product.get_absolute_url()))
 
-    qr_path = os.path.join(MEDIA_ROOT, 'for_qr')
+    qr_path = os.path.join(MEDIA_ROOT, 'for_qr', 'qr.png')
     qr_code.save(qr_path)
     qr_image = True
     context = {'product': product, 'qr_image': qr_image}
