@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block another_in_head %}
+    <link rel="stylesheet" href="{% static 'products/css/general_table_v01.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container_for_total_quantity_of_goods">
+    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+        <div class="total_quantity_of_goods">
+            <h5>Количество записей (строк в таблице): {{product_count}}</h2>
+            <h5>Общее количество объектов (ТМЦ): {{quantity_all_products}} шт.</h2>
+            <h5>Общая стоимость всех товаров: {{price_all_products}} GEL</h2>
+            <h5>Количество ТМЦ, требующее ремонта: {{goods_requiring_repair}} </h2>
+            <h5>Количество ТМЦ на списание: {{goods_write_downs}} </h2>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock%}

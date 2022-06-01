@@ -1,0 +1,61 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.menu{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.menu_item{
+    margin: 5px 5px;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+.menu_item a{
+    color: white;
+    text-decoration: none;
+    
+}
+
+
+.container_for_authorization{
+    display: flex;
+    justify-content: center;
+}
+
+.authorization{
+    margin-top: 100px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.authorization .oops{
+    text-align: center;
+    font-size: 18px;
+}
+
+.authorization .login_form{
+
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid rgb(3, 121, 9);
+    border-radius: 5px;
+}
+
+.authorization .login_form_title{
+    text-align: center;
+}
+
+.authorization .massege_eror{
+    color: red;
+}
+
+.authorization button{
+    border: 2px solid rgb(3, 121, 9);
+    border-radius: 5px;
+}

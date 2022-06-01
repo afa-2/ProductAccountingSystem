@@ -1,0 +1,191 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block another_in_head %}
+    <link rel="stylesheet" href="{% static 'products/css/product_card_v01.css' %}">
+{% endblock %}
+
+{% block content %} 
+
+<div class="product_in_product_card">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="product_imgs">
+            {% if product.imagegallery_set.all %}
+                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                        <div class="slider">
+                            <div class="slider__wrapper">
+                                <div class="slider__items">
+                                    <div class="slider__item">
+                                        <div class="container_for_slider_photo">
+                                            {% if product.main_image %}
+                                                <img src="{{ product.main_image.url }}" alt="..." loading="lazy">
+                                            {% else %}
+                                                <img src="{% static 'products/img/no_photo.png' %}" alt="..." loading="lazy">
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% for photo in product.imagegallery_set.all %}
+                                    <div class="slider__item">
+                                        <div class="container_for_slider_photo">
+                                            <img src="{{ photo.additional_picture.url }}" alt="..." loading="lazy">
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!-- <a class="slider__control slider__control_prev" href="#" role="button" data-slide="prev"></a>
+                            <a class="slider__control slider__control_next" href="#" role="button" data-slide="next"></a> -->
+                    </div>
+                </div>
+
+                <div class="hidden-xs hidden-sm-12 col-md-2 col-lg-2">
+                    <div class="slider__thumbnails">
+                        <div class="slider__thumbnails-item" data-slide-to="0">
+                        <img src="{{ product.main_image.url }}" alt="..." loading="lazy">
+                        </div>
+
+                        {% for photo in product.imagegallery_set.all %}
+                        <div class="slider__thumbnails-item" data-slide-to="{{ forloop.counter }}">
+                        <img src="{{ photo.additional_picture.url }}" alt="..." loading="lazy">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            
+            {% else %}
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="main_photo_without_additional_picture">
+                        {% if product.main_image %}
+                            <img src="{{ product.main_image.url }}" alt="..." loading="lazy">
+                        {% else %}
+                            <img src="{% static 'products/img/no_photo.png' %}" alt="..." loading="lazy">
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="description" >
+            <div class="description_container">
+
+                <div class="title description_item">
+                    Название: {{product.title}}
+                </div>
+
+                <div class="title_category description_item">
+                    Категория: {{product.category}}
+                </div>
+                
+                {% if product.description %}
+                <div class="title_description description_item">
+                    Описание: {{product.description}}
+                </div>
+                {% endif %}
+
+                <div class="quantity description_item">
+                    Количество: {{product.quantity}}
+                </div>
+
+                <div class="price description_item">
+                    Цена за штуку: {{product.price}} GEL
+                </div>
+
+                <div class="total_price description_item">
+                    Общая цена: {{product.get_all_price}} GEL
+                </div>
+
+                {% if product.serial_number %}
+                <div class="serial_number description_item">
+                    Серийный номер: {{product.serial_number}}
+                </div>
+                {% endif %}
+
+                <div class="location description_item">
+                    Локация: {{product.get_location_display}}
+                </div>
+
+                <div class="place_of_application description_item">
+                    Место применения: {{product.get_place_of_application_display}}
+                </div>
+
+                <div class="responsible description_item">
+                    Ответственный: {{product.responsible}}
+                </div>
+
+                {% if product.equipment %}
+                <div class="equipment description_item">
+                    Комплектация: {{product.equipment}}
+                </div>
+                {% endif %}
+
+                {% if product.warranty %}
+                <div class="warranty description_item">
+                    Дата, с которой исчисляется гарантийный срок: {{product.warranty}}
+                </div>
+                {% if product.warranty_period %}
+                <div class="warranty_period description_item">
+                   Гарантийный срок: {{product.warranty_period}}
+                </div>
+                {% endif %}
+                {% endif %}
+
+                {% if product.additional_information %}                
+                <div class="additional_information description_item">
+                    Дополнительная информация: {{product.additional_information}}
+                </div>
+                {% endif %}
+
+                <div class="status description_item">
+                    Статус: {{product.get_status_display}}
+                </div>
+                <div class="container_for_qr">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="qr_code description_item">
+                            <img src="/media/for_qr/qr.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // инициализация слайдера
+      var slider = new SimpleAdaptiveSlider('.slider', {
+        loop: true,
+        autoplay: false,
+        swipe: true
+      });
+      var thumbnailsItem = document.querySelectorAll('.slider__thumbnails-item');
+
+      function setActiveThumbnail() {
+        var sliderItemActive = document.querySelector('.slider__item_active');
+        var index = parseInt(sliderItemActive.dataset.index);
+        for (var i = 0, length = thumbnailsItem.length; i < length; i++) {
+          if (i !== index) {
+            thumbnailsItem[i].classList.remove('active');
+          } else {
+            thumbnailsItem[index].classList.add('active');
+          }
+        }
+      }
+      setActiveThumbnail();
+      document.querySelector('.slider').addEventListener('slider.set.active', setActiveThumbnail);
+      var sliderThumbnails = document.querySelector('.slider__thumbnails');
+      sliderThumbnails.addEventListener('click', function(e) {
+        $target = e.target.closest('.slider__thumbnails-item');
+        if (!$target) {
+          return;
+        }
+        var index = parseInt($target.dataset.slideTo, 10);
+        slider._moveTo(index);
+      });
+    });
+</script>
+
+
+{% endblock%}

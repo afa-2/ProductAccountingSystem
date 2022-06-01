@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static 'base/img/icon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'base/css/flexboxgrid2.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <!-- Подключаем CSS слайдера -->
+    <link rel="stylesheet" href="{% static 'base/css/simple-adaptive-slider.css' %}">
+    <!-- Подключаем JS слайдера -->
+    <script defer src="{% static 'base/js/simple-adaptive-slider.dev.min.js'%} "></script>
+    <link rel="stylesheet" href="{% static 'base/css/base_v01.css' %}">
+    <style>body {background-image: url({% static 'base/img/background.jpg' %})};</style>
+
+    {% block another_in_head %}{% endblock %}
+</head>
+
+<body>
+    <div class="from_base_for_content">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="container_for_content">    
+                
+                {% if request.user.is_superuser %}
+                <div class="container_with_all_access_rights">
+                    <div class="menu">
+                        <div class="menu_item"><a href="{% url 'general_table' %}">Сводные данные</a></div>
+                        <div class="menu_item"><a href="{% url 'all_products' %}">Список ТМЦ</a></div>
+                        <div class="menu_item"><a href="/admin">Админ панель</a></div>
+                    </div>
+
+                    <div class="content_container">
+                        {% block content %} 
+                        {% endblock%}
+                    </div>
+                </div>
+
+                {% elif request.user.is_authenticated %}
+                <div class="container_with_restricted_access_rights">
+                    <div class="menu">
+                        <div class="menu_item"><a href="/admin">Админ панель</a></div>
+                    </div>
+                </div>
+
+                {% else %}
+                <div class="container_for_authorization">
+                    <div class="col-xs-11 col-sm-11 col-md-5 col-lg-5">
+                        <div class="authorization">
+                            <div class="oops"><b>Упс... А вы кто? Придется авторизоваться :(</b></div>
+                            <div class="login_form">
+                                <div class="login_form_title"><b>Авторизация</b></div>
+                                {% for message in messages %}
+                                    <div class="massege_eror">{{ message }}</div>
+                                {% endfor %}
+                                <form method="POST" action="/authorization/">
+                                    {% csrf_token %}
+                                    {{ AuthenticationForm.as_p }}
+                                    <button type="submit" class="button">Войти</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

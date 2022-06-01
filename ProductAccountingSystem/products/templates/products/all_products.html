@@ -1,23 +1,103 @@
+{% extends "base/base.html" %}
 {% load static %}
-<head>
-    <script type="text/javascript" src="{% static 'products/js/jquery_min.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'products/css/all_products.css' %}">
-</head>
 
-<body>
-    <div class="test">
-        <a href="/admin">Хочу в админ панель</a>
+{% block another_in_head %}
+    <link rel="stylesheet" href="{% static 'products/css/all_products_v01.css' %}">
+{% endblock %}
+
+{% block content %} 
+
+<h2 class="all_products_title">Все ТМЦ (количество строк): {{ all_products|length }} </h2>
+
+<div class="filters">
+    <div class="filters_title">Фильтры:</div>
+    <form method="GET" name="filter_form">
+        {% for i in filter_form %}
+        <div class="filter_parametrs">
+            <div>{{ i.label_tag }}</div>
+            <div>{{ i }}</div>
+        </div>
+        {% endfor %}
+        <button type="submit" class="button">Применить фильры</button>
+    </form>
+</div>
+
+<div class="container_for_table_products">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="table_title">
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    <div class="product_item product_photo">Фото</div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                    <div class="product_item title">Название</div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-1 col-lg-1">
+                    <div class="product_item category">Категория</div>
+                </div>
+                <div class="hidden-xs hidden-sm-12 col-md-1 col-lg-1">
+                    <div class="product_item quantity">Количество</div>
+                </div>
+                <div class="hidden-xs hidden-sm-12 col-md-1 col-lg-1">
+                    <div class="product_item price">Цена за шт.</div>
+                </div>
+                <div class="hidden-xs hidden-sm-12 col-md-2 col-lg-2">
+                    <div class="product_item location">Локация</div>
+                </div>
+                <div class="hidden-xs hidden-sm-12 col-md-2 col-lg-2">
+                    <div class="product_item place_of_application">Место применения</div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-1 col-lg-1">
+                    <div class="product_item status">Статус</div>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                    <div class="product_item responsible">Ответств.</div>
+                </div>
+            </div>
     </div>
 
-    <script src="https://daruse.ru/assets/js/snowfall.js"></script>
-    <script type="text/javascript">
-        $(document).snowfall({
-            image :"http://qrcoder.ru/code/?%C3%EB%E0%E2%ED%EE%E5+%E4%EE%F1%F2%E8%E6%E5%ED%E8%E5+%F2%E5%F5%ED%E8%F7%E5%F1%EA%EE%E3%EE+%EF%F0%EE%E3%F0%E5%F1%F1%E0+-+%FD%F2%EE+%E2%EE%E7%EC%EE%E6%ED%EE%F1%F2%FC+%E3%E5%ED%E5%F0%E8%F0%EE%E2%E0%F2%FC+QR+%EA%EE%E4%FB&10&0", 
-            flakeCount: 30,
-            minSize: 20, 
-            maxSize: 100,
-            maxSpeed: 1
-        });
-    </script>
+    <hr>
 
-</body>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    {% for product in all_products %}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="all_products">
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    {% if product.main_image_miniature %}
+                    <div class="product_item product_photo"><img src="{{product.main_image_miniature.url}}" alt=""></div>
+                    {% else %}
+                    <div class="product_item product_photo"><img src="{% static 'products/img/no_photo.png' %}" alt=""></div>
+                    {% endif %}
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                    <a href="{{product.get_absolute_url}}">{{product.title}}</a>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-1 col-lg-1">
+                    <div class="product_item category">{{product.category}}</div>
+                </div>
+                <div class="hidden-xs hidden-sm-12 col-md-1 col-lg-1">
+                    <div class="product_item quantity">{{product.quantity}}</div>
+                </div>
+                <div class="hidden-xs hidden-sm-12 col-md-1 col-lg-1">
+                    <div class="product_item price">{{product.price}}</div>
+                </div>
+                <div class="hidden-xs hidden-sm-12 col-md-2 col-lg-2">
+                    <div class="product_item location">{{product.get_location_display}}</div>
+                </div>
+                <div class="hidden-xs hidden-sm-12 col-md-2 col-lg-2">
+                    <div class="product_item place_of_application">{{product.get_place_of_application_display}}</div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-1 col-lg-1">
+                    <div class="product_item status">{{product.get_status_display}}</div>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                    <div class="product_item responsible">{{product.responsible}}</div>
+                </div>
+
+            </div>
+        </div>
+    {% endfor%}
+    </div>
+</div>
+
+
+{% endblock%}

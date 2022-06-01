@@ -1,0 +1,119 @@
+
+.product_in_product_card{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product_in_product_card .product_imgs {
+    margin: 2px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+}
+
+.product_in_product_card .slider__container {
+    position: relative;
+    margin-left: 200px;
+  }
+
+  .product_in_product_card .slider {
+    width: 100%;
+    flex: 0 0 310px;
+    margin-left: unset;
+    margin-right: unset;
+}
+
+.product_in_product_card .slider__item {
+    counter-increment: slide;
+    display: flex;
+    background-color: white;
+}
+
+.product_in_product_card .slider__item::before {
+    content: counter(slide);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #fff;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.product_in_product_card .slider img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product_in_product_card .slider__thumbnails {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    top: 0;
+    height: 100%;
+}
+
+.product_in_product_card .slider__thumbnails-item {
+    line-height: 0;
+    max-width: 52px;
+    margin: 0 10px 10px 0;
+    opacity: .5;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.15s opacity ease-in-out;
+}
+
+.product_in_product_card .slider__thumbnails-item.active {
+    opacity: 1;
+}
+
+.product_in_product_card .slider__thumbnails-item:hover {
+    opacity: 1;
+}
+
+.product_in_product_card .slider__thumbnails-item>img {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
+.product_in_product_card .main_photo_without_additional_picture img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.product_in_product_card .description {
+    margin: 2px;
+    padding: 0px 5px 20px 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+}
+
+.product_in_product_card .description_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.product_in_product_card .title{
+    color: black;
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.product_in_product_card .description_item{
+    padding: 2px 0px;
+}
+
+.product_in_product_card .container_for_qr{
+    display: flex;
+    justify-content: center;
+}
+
+.product_in_product_card .qr_code img{
+    width: 100%;
+}

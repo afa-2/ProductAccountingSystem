@@ -1,9 +1,6 @@
 from django.db import models
 
 import os
-from django.contrib.auth.models import User
-
-
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -11,7 +8,7 @@ from PIL import Image
 from django.db.models.signals import pre_delete
 from django.dispatch.dispatcher import receiver
 from datetime import datetime, timezone
-
+import datetime
 
 _MAX_SIZE = 1280
 _MINIATURE_MAX_SIZE = 400
@@ -36,7 +33,7 @@ class Category(models.Model):
 class Product(models.Model):
     CHOICES_LOCATION = [
         ('warehouse', 'Склад'),
-        ('office_gorgasali', 'Офис Горкасали 9'),
+        ('office_gorgasali', 'Офис на ул. Горгасали 9'),
         ('house', 'Дом'),
         ('office_gorizont', 'Офис Горизонт'),
     ]
@@ -76,9 +73,9 @@ class Product(models.Model):
     responsible = models.ForeignKey(User, on_delete=models.PROTECT, default=User, verbose_name='Ответственный')
     equipment = models.TextField(verbose_name='Комплектация', blank=True)
     warranty = models.DateField(verbose_name='Дата, с которой исчисляется гарантийный срок', blank=True, null=True)
+    warranty_period = models.IntegerField(verbose_name='Гарантийный срок', blank=True, null=True)
     additional_information = models.TextField(verbose_name='Дополнительная информация', blank=True)
     status = models.CharField(max_length=200, choices=STATUS, default='serviceable', verbose_name='Статус')
-
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
     update_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
 

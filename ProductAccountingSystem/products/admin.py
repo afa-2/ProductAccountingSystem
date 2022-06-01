@@ -4,9 +4,9 @@ from django.utils.safestring import mark_safe
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', )
-    list_display_links = ('id', 'title')
-    search_fields = ('id', 'title')
+    list_display = ('title', )
+    list_display_links = ('title',)
+    search_fields = ('title',)
     fields = ('title', 'slug')
 
 
@@ -28,14 +28,14 @@ class ImageGalleryInline(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ImageGalleryInline, ]
-    list_display = ('get_photo', 'title', 'category', 'quantity', 'location', 'status')
+    list_display = ('get_photo', 'id', 'title', 'category', 'quantity', 'location', 'status')
     list_display_links = ('title',)
     search_fields = ('title', )
     list_filter = ('category', 'location', 'place_of_application', 'responsible',)
     list_editable = ('status', )
     fields = ('get_photo', 'main_image', 'title', 'category', 'description', 'quantity',
               'price', 'serial_number', 'location', 'place_of_application',
-              'responsible', 'equipment', 'warranty', 'additional_information',
+              'responsible', 'equipment', 'warranty', 'warranty_period', 'additional_information',
               'status', 'created_at', 'update_at')
     readonly_fields = ('get_photo', 'created_at', 'update_at')
     ordering = ('-created_at',)
