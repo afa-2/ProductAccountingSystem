@@ -1,5 +1,7 @@
 asgiref
-backports.zoneinfo
 Django
+mysqlclient
 Pillow
+pytz
+qrcode
 sqlparse
