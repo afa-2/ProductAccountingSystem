@@ -1,9 +1,11 @@
+import os
 from django.shortcuts import render, HttpResponse
 from products.models import Product
 from django.db.models import *
 from django.db.models import Sum, Aggregate, F
 from products.forms import FilterForm
 import qrcode
+from ProductAccountingSystem.settings import MEDIA_ROOT
 
 
 def general_table(request):
@@ -82,9 +84,10 @@ def all_products(request):
 
 def product_card(request, id):
     product = Product.objects.get(id=id)
-
     qr_code = qrcode.make(request.build_absolute_uri(product.get_absolute_url()))
-    qr_code.save("../media/for_qr/qr.png")
+
+    qr_path = os.path.join(MEDIA_ROOT, 'for_qr')
+    qr_code.save(qr_path)
     qr_image = True
     context = {'product': product, 'qr_image': qr_image}
     return render(request, 'products/product_card.html', context)

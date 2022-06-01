@@ -130,6 +130,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = get_media_root(BASE_DIR)
 MEDIA_URL = '/media/'
 
+FO_QR_PATH = get_path_for_qr(BASE_DIR)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

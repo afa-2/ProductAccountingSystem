@@ -25,6 +25,12 @@ def get_media_root(base_dir: str) -> str:
     return os.path.join(base_dir, 'media')
 
 
+def get_path_for_qr(base_dir: str) -> str:
+    if is_hosted():
+        return os.path.join(base_dir, '..', 'media', 'for_qr')
+    return os.path.join(base_dir, 'media', 'for_qr')
+
+
 def get_secret_key(base_dir: str) -> str:
     config_file = os.path.join(base_dir, '..', 'config.json')
     with open(config_file, 'r') as config:
