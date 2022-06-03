@@ -24,6 +24,7 @@ def general_table(request):
     price_all_products = 0
     for i in all_products:
         price_all_products += i.total_price
+    price_all_products = round(price_all_products, 2)
     context['price_all_products'] = price_all_products
 
     # количество товара, требующее ремонта
