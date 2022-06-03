@@ -42,7 +42,7 @@ class FilterForm(forms.Form):
                                  required=False,
                                     widget=forms.Select(attrs={'class': 'form-control'}),
                                     choices=CHOICES_LOCATION)
-    place_of_application = forms.ChoiceField(label='Мето применения:',
+    place_of_application = forms.ChoiceField(label='Место применения:',
                                     required=False,
                                     widget=forms.Select(attrs={'class': 'form-control'}),
                                     choices=PLACE_OF_APPLICATION)
