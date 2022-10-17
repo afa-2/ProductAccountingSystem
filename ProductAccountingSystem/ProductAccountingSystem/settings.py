@@ -80,11 +80,15 @@ WSGI_APPLICATION = 'ProductAccountingSystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+db_settings = get_db_settings(BASE_DIR)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '..', 'db.sqlite3'),
+        'ENGINE': db_settings['ENGINE'],
+        'NAME': db_settings['NAME'],
+        'USER': db_settings['USER'],
+        'PASSWORD': db_settings['PASSWORD'],
+        'HOST': db_settings['HOST']
     }
 }
 
