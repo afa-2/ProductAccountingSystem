@@ -1,0 +1,4 @@
+source ./venv_PAS/bin/activate
+sudo /etc/init.d/nginx restart
+cd ProductAccountingSystem
+uwsgi --socket :8001 --module ProductAccountingSystem.wsgi
