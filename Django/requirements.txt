@@ -1,0 +1,8 @@
+asgiref
+Django
+mysqlclient
+Pillow
+pytz
+qrcode
+sqlparse
+uWSGI

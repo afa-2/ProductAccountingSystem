@@ -166,3 +166,5 @@ config.json
 /else
 /scripts
 /venv_PAS
+.config.env.dev
+Data/

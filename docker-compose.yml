@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  db:
+    image: mysql
+    env_file:
+      - ./.config.env.dev
+    volumes:
+      - ./Data/Database:/var/lib/mysql
+    restart: always
+    
+  web:
+    build: ./Django
+    depends_on:
+      - 'db'
+    env_file:
+      - ./.config.env.dev
+    expose: 
+      - 8001
+    volumes:
+      - ./Data/static:/Django/static
+      - ./Data/media:/Django/media 
+    restart: always
+    
+  server:
+    build: ./Nginx
+    ports:
+      - 80:8000
+    volumes:
+      - ./Data/static:/static
+      - ./Data/media:/media
+    restart: always   
+
+    
+
