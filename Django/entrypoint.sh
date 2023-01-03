@@ -1,5 +1,6 @@
 #!/bin/bash
 
+chmod ugo+rwx ./ProductAccountingSystem/manage.py
 
 >&2 echo "Waiting for the db to be ready."
 
