@@ -19,7 +19,8 @@
 - deploy-prod.sh (Исполняемый файл, запускающий docker-compose, формирование и запуск контейнеров
 
 -----Запуск------
-Из комендной строки: ./deploy-prod.sh 
+Установка docker: sudo ./install_docker.sh
+Запуск: ./deploy-prod.sh 
 
 -----Что происходит------
 При запуске deploy-prod.sh:
