@@ -44,6 +44,7 @@ class Product(models.Model):
         ('bar', 'Бар'),
         ('lower_hall', 'Нижний зал'),
         ('upper_hall', 'Верхний зал'),
+        ('server_room', 'Серверная'),
         ('smart_office', 'Смарт офис'),
         ('reception', 'Ресепшн'),
     ]
